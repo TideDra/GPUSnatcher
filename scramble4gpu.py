@@ -147,11 +147,11 @@ def main(args, ids):
                 hostname = socket.gethostname()
                 gpu_ids = ', '.join(gpus_free[:sca_nums].astype('str'))
                 subject = f"{hostname}: GPU {gpu_ids} has been scrambled"
-                content = f"{hostname}: GPU {gpu_ids} has been scrambled, and will be released in {args.times//60} minutes!"
+                content = f"{hostname}: GPU {gpu_ids} has been scrambled, and will be released in {args.times} minutes!"
                 email_sender.send_email(email_conf['receiver'], subject, content)
             
             if len(ids) >= args.gpu_nums:
-                time.sleep(args.times)
+                time.sleep(args.times*60)
                 break
             time.sleep(60)
 
